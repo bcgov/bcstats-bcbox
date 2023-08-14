@@ -22,7 +22,7 @@ const { getConfig } = storeToRefs(useConfigStore());
   <div class="flex flex-column mr-8 ml-8">
     <div class="flex justify-content-center mb-5">
       <h1 class="font-bold">
-        Store and share files in BCBox
+        Store and share files in BC Stats LockBox
       </h1>
     </div>
     <div class="flex justify-content-center mb-5">
