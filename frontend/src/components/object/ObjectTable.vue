@@ -6,7 +6,8 @@ import { Spinner } from '@/components/layout';
 import {
   DeleteObjectButton,
   DownloadObjectButton,
-  ObjectPermission
+  ObjectFilters,
+  ObjectPermission,
 } from '@/components/object';
 import { ShareObjectButton } from '@/components/object/share';
 import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, InputSwitch, useToast } from '@/lib/primevue';
@@ -109,7 +110,6 @@ const filters = ref({
       :value="tableData"
       data-key="id"
       class="p-datatable-sm"
-      striped-rows
       responsive-layout="scroll"
       :paginator="true"
       :rows="10"
@@ -122,7 +122,9 @@ const filters = ref({
     >
       <template #header>
         <div class="flex justify-content-end">
-          <span class="p-input-icon-left">
+          <ObjectFilters :bucket-id="props.bucketId" />
+
+          <span class="p-input-icon-left ml-4">
             <i class="pi pi-search" />
             <InputText
               v-model="filters['global'].value"
@@ -202,8 +204,10 @@ const filters = ref({
         <template #body="{ data }">
           <InputSwitch
             v-model="data.public"
-            :disabled="!permissionStore.isObjectActionAllowed(
-              data.id, getUserId, Permissions.MANAGE, props.bucketId as string)"
+            :disabled="!(
+              usePermissionStore().isUserElevatedRights() &&
+              permissionStore.isObjectActionAllowed(
+                data.id, getUserId, Permissions.MANAGE, props.bucketId as string))"
             @change="togglePublic(data.id, data.public)"
           />
         </template>
