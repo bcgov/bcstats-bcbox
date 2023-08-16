@@ -66,7 +66,7 @@ onMounted( () => {
         public in the object list
       </li>
       <li>
-        To share to a BCBox user, you must first apply permissions to them
+        To share to a BC Stats LockBox user, you must first apply permissions to them
       </li>
     </ul>
 
@@ -82,7 +82,7 @@ onMounted( () => {
       </TabPanel>
       <!-- Disable for public until unauthed File Details page works -->
       <TabPanel
-        header="BCBox share link"
+        header="BC Stats LockBox share link"
         :disabled="obj?.public"
       >
         <ShareLinkContent

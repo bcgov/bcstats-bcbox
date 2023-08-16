@@ -29,11 +29,11 @@ const { getIsAuthenticated } = storeToRefs(useAuthStore());
               My Buckets
             </router-link>
           </li>
-          <li class="mr-2">
+          <!-- <li class="mr-2">
             <a
               target="_blank"
               href="https://github.com/bcgov/bcbox/wiki"
-            >Help</a>
+            >Help</a> -->
           </li>
         </ol>
       </template>

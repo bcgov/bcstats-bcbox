@@ -28,15 +28,8 @@ const { getConfig } = storeToRefs(useConfigStore());
     <div class="flex justify-content-center mb-5">
       <p class="text-xl text-center">
         This website uses the <a href="https://bcgov.github.io/common-service-showcase/services/coms.html">Common Object Management Service</a> so
-        <a href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/information-management-technology/id-services/idir">IDIR</a> and <a href="https://www.bceid.ca/">BCeID</a>
+        <a href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/information-management-technology/id-services/idir">IDIR</a> and <a href="https://www.bceid.ca/">Business BCeID</a>
         users can upload and share files.<br /><br />
-        You will need access to a bucket – a file storage container – before you can use BCBox.
-        If you are new to buckets and don't know a bucket manager, contact
-        <a href="https://apps.nrs.gov.bc.ca/int/jira/servicedesk/customer/portal/1/create/701">NRIDS Optimization</a> (NRM only)
-        or your ministry's service desk to get credentials for a bucket. Then come back, log in, and add it in BCBox.
-        <br /><br />
-        If you already have a bucket from outside of BCBox, you can't yet work on existing files
-        from that bucket in BCBox, but we are currently working to make this possible through synchronization.
       </p>
     </div>
     <div class="flex justify-content-center mb-5">
@@ -56,19 +49,6 @@ const { getConfig } = storeToRefs(useConfigStore());
         width="60%"
       />
     </div>
-    <div class="flex justify-content-center mb-5">
-      <h1 class="font-bold">
-        Ongoing feature enhancements
-      </h1>
-    </div>
-    <div class="flex justify-content-center mb-8 text-xl">
-      <ul>
-        <li>
-          BCBox is constantly improving! See BCBox's <a href="https://github.com/bcgov/bcbox/wiki">Help</a> for more information,
-          a link to our Product Roadmap, and documentation of features as they are implemented.
-        </li>
-      </ul>
-    </div>
     <div class="grid mb-8">
       <div class="col-6 pr-5">
         <div class="flex align-items-left mb-2">
@@ -78,7 +58,7 @@ const { getConfig } = storeToRefs(useConfigStore());
         </div>
         <div class="flex align-items-left">
           <p class="text-xl">
-            With BCBox, you can use low-cost object storage for your files,
+            With BC Stats LockBox, you can use low-cost object storage for your files,
             images and documents.
           </p>
         </div>
@@ -101,7 +81,7 @@ const { getConfig } = storeToRefs(useConfigStore());
         </div>
         <div class="flex align-items-left">
           <p class="text-xl">
-            You can assign custom permissions to other users through IDIR or BCeID authentication.<br /><br />
+            You can assign custom permissions to other users through IDIR or Business BCeID authentication.<br /><br />
             IDIR users can also choose to share files with public links.
             Contact your organization's privacy and security teams to see if this fits your intended use.
             Make sure you don't upload personal or private information without the consent of your Ministry
@@ -117,21 +97,6 @@ const { getConfig } = storeToRefs(useConfigStore());
           />
         </div>
       </div>
-    </div>
-    <div class="flex justify-content-center mb-5">
-      <h1 class="font-bold">
-        Versioning, metadata, tagging, syncing with existing buckets and more
-      </h1>
-    </div>
-    <div class="flex justify-content-center mb-8 text-xl">
-      <ul>
-        <li>
-          Contact <a
-            href="https://apps.nrs.gov.bc.ca/int/jira/servicedesk/customer/portal/1/create/701"
-            target="_blank"
-          >NRIDS Optimization</a> or your ministry's service desk. You will need a bucket to get started.
-        </li>
-      </ul>
     </div>
     <div class="flex justify-content-center mb-8">
       <router-link
@@ -179,21 +144,8 @@ const { getConfig } = storeToRefs(useConfigStore());
           indicating your BCeID-related intentions
         </li>
         <li>
-          All other inquiries around getting or using buckets should be directed to <a
-            href="https://apps.nrs.gov.bc.ca/int/jira/servicedesk/customer/portal/1/create/701"
-            target="_blank"
-          >NRIDS Optimization</a>
-          (Natural Resource ministries) or your ministry's service desk
-        </li>
-        <li>
           Storage and custodianship of metadata and tags (not the objects themselves in your bucket)
-          is maintained by Natural Resource Information & Digital Services
-        </li>
-        <li>
-          You will refer to and adhere to <a
-            href="https://www2.gov.bc.ca/gov/content/data/about-data-management/databc"
-            target="_blank"
-          >DataBC</a> requirements for public file sharing
+          is maintained by the BC Data Service Division
         </li>
       </ul>
     </div>

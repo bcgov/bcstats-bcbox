@@ -44,8 +44,8 @@ const showPermissions = async (bucketId: string, bucketName: string) => {
 
 const confirmDeleteBucket = (bucketId: string) => {
   confirm.require({
-    message: 'Are you sure you want to delete this bucket in BCBox? \
-      This will drop all related objects and permissions from BCBox, \
+    message: 'Are you sure you want to delete this bucket in BC Stats LockBox? \
+      This will drop all related objects and permissions from BC Stats LockBox, \
       but the files will still remain in the actual bucket.',
     header: 'Delete bucket',
     acceptLabel: 'Confirm',

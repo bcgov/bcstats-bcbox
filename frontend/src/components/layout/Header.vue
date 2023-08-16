@@ -21,7 +21,7 @@ import { LoginButton } from '@/components/layout';
             id="title-branding"
             class="justify-content-left"
           >
-            <h1>BCBox</h1>
+            <h1>BC Stats LockBox</h1>
           </div>
         </div>
         <div class="col-fixed">
