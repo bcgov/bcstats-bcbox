@@ -103,7 +103,7 @@ const onCancel = () => {
         name="bucketName"
         label="Bucket name *"
         placeholder="My Documents"
-        help-text="Your custom display name for the bucket - any name as you would like to see it listed in BC Stats LockBox."
+        help-text="The display name for the bucket - any name as you would like to see it listed in BC Stats LockBox."
         autofocus
       />
       <TextInput
