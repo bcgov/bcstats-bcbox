@@ -145,7 +145,7 @@ export default function getRouter() {
 
   router.afterEach((to) => {
     // Update document title
-    document.title = to.meta.title ? `BCBox - ${to.meta.title}` : 'BCBox';
+    document.title = to.meta.title ? `BC Stats LockBox - ${to.meta.title}` : 'BC Stats LockBox';
 
     appStore.endDeterminateLoading();
   });
