@@ -82,7 +82,6 @@ const { getConfig } = storeToRefs(useConfigStore());
         <div class="flex align-items-left">
           <p class="text-xl">
             You can assign custom permissions to other users through IDIR or Business BCeID authentication.<br /><br />
-            IDIR users can also choose to share files with public links.
             Contact your organization's privacy and security teams to see if this fits your intended use.
             Make sure you don't upload personal or private information without the consent of your Ministry
             Privacy Officer.
@@ -142,10 +141,6 @@ const { getConfig } = storeToRefs(useConfigStore());
           If you intend to advise users to access with BCeID, please send an email to the
           <a href="mailto:IDIM.Consulting@gov.bc.ca">Provincial Identity Information Management Program</a>
           indicating your BCeID-related intentions
-        </li>
-        <li>
-          Storage and custodianship of metadata and tags (not the objects themselves in your bucket)
-          is maintained by the BC Data Service Division
         </li>
       </ul>
     </div>
