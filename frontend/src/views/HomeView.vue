@@ -27,9 +27,9 @@ const { getConfig } = storeToRefs(useConfigStore());
     </div>
     <div class="flex justify-content-center mb-5">
       <p class="text-xl text-center">
-        This website uses the <a href="https://bcgov.github.io/common-service-showcase/services/coms.html">Common Object Management Service</a> so
+        This website allows
         <a href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/information-management-technology/id-services/idir">IDIR</a> and <a href="https://www.bceid.ca/">Business BCeID</a>
-        users can upload and share files.<br /><br />
+        users to upload and share files.<br /><br />
       </p>
     </div>
     <div class="flex justify-content-center mb-5">
