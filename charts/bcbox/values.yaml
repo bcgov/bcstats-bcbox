@@ -17,8 +17,7 @@ fullnameOverride: ~
 # DeploymentConfig pre-hook failure behavior
 failurePolicy: Retry
 
-podAnnotations:
-  timestamp: "{{ date "20060102150405" .Release.Time }}"
+podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
