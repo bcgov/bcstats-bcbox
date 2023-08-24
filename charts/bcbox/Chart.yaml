@@ -39,4 +39,5 @@ maintainers:
 # It is recommended to use it with quotes.
 appVersion: "0.3.0"
 deprecated: false
-annotations: {}
+annotations:
+  timestamp: "{{ date "20060102150405" .Release.Time}}"
