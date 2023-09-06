@@ -61,16 +61,19 @@ onMounted( () => {
     </h3>
 
     <ul class="mb-4">
+      <!-- Disable public sharing
       <li>
         To share publicly or with a direct file link, you must set the file to
         public in the object list
       </li>
+      -->
       <li>
         To share to a BC Stats LockBox user, you must first apply permissions to them
       </li>
     </ul>
 
     <TabView>
+      <!-- Disable public sharing
       <TabPanel
         v-if="obj?.public"
         header="Direct public file link"
@@ -80,6 +83,7 @@ onMounted( () => {
           label="Direct Link"
         />
       </TabPanel>
+      -->
       <!-- Disable for public until unauthed File Details page works -->
       <TabPanel
         header="BC Stats LockBox share link"

@@ -197,6 +197,7 @@ const filters = ref({
           {{ formatDateLong(data.lastUpdatedDate) }}
         </template>
       </Column>
+      <!-- Disable public sharing
       <Column
         field="publicSharing"
         header="Public"
@@ -212,6 +213,7 @@ const filters = ref({
           />
         </template>
       </Column>
+      -->
       <Column
         header="Actions"
         header-style="width: 220px"
