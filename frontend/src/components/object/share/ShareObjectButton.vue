@@ -31,9 +31,9 @@ const displayShareDialog = ref(false);
 const bcBoxLink = computed(() => {
   return `${window.location.origin}/detail/objects?objectId=${props.id}`;
 });
-const comsUrl = computed(() => {
+/*const comsUrl = computed(() => {
   return `${getConfig.value.coms?.apiPath}/object/${props.id}`;
-});
+});*/
 
 onMounted( () => {
   obj.value = objectStore.findObjectById(props.id);

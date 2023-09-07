@@ -10,7 +10,8 @@ import {
   ObjectPermission,
 } from '@/components/object';
 import { ShareObjectButton } from '@/components/object/share';
-import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, InputSwitch, useToast } from '@/lib/primevue';
+//import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, InputSwitch, useToast } from '@/lib/primevue';
+import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, useToast } from '@/lib/primevue';
 import { useAuthStore, useAppStore, useObjectStore, usePermissionStore } from '@/store';
 import { Permissions } from '@/utils/constants';
 import { ButtonMode } from '@/utils/enums';
@@ -69,9 +70,9 @@ const showPermissions = async (objectId: string) => {
   permissionsObjectName.value = objectStore.findObjectById(objectId)?.name;
 };
 
-const togglePublic = async (objectId: string, isPublic: boolean) => {
+/*const togglePublic = async (objectId: string, isPublic: boolean) => {
   await objectStore.togglePublic(objectId, isPublic);
-};
+};*/
 
 function onDeletedSuccess() {
   toast.success('File deleted');
