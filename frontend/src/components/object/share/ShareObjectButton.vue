@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {});
 
 // Store
 const objectStore = useObjectStore();
-const { getConfig } = storeToRefs(useConfigStore());
+//const { getConfig } = storeToRefs(useConfigStore());
 
 // State
 const obj: Ref<COMSObject | undefined> = ref(undefined);
