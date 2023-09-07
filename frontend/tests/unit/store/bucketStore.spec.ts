@@ -19,6 +19,7 @@ const bucket: Bucket = {
   key: 'test',
   region: 'us-east-1',
   secretAccessKey: '123',
+  adminPass: '123',
 };
 
 const bucket2: Bucket = {
@@ -31,6 +32,7 @@ const bucket2: Bucket = {
   key: 'test',
   region: 'us-east-1',
   secretAccessKey: '456',
+  adminPass: '456',
 };
 
 const readPerm = {
