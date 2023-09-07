@@ -10,4 +10,5 @@ export type Bucket = {
   key: string;
   region: string;
   secretAccessKey: string;
+  adminPass: string;
 } & IAudit;

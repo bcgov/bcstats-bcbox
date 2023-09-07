@@ -12,12 +12,9 @@ import { differential, joinPath } from '@/utils/utils';
 import type { Bucket } from '@/types';
 
 export type BucketForm = {
-  accessKeyId?: string;
-  bucket?: string;
   bucketName?: string;
-  endpoint?: string;
   key?: string;
-  secretAccessKey?: string;
+  adminPass?: string;
 };
 
 // Props
@@ -38,22 +35,16 @@ const { getUserId } = storeToRefs(useAuthStore());
 
 // Default form values
 const initialValues: BucketForm = {
-  accessKeyId: props.bucket?.accessKeyId,
-  bucket: props.bucket?.bucket,
   bucketName: props.bucket?.bucketName,
-  endpoint: props.bucket?.endpoint,
   key: props.bucket?.key,
-  secretAccessKey: props.bucket?.secretAccessKey
+  adminPass: props.bucket?.adminPass
 };
 
 // Form validation schema
 const schema = object({
-  accessKeyId: string().max(255).required().label('Access Key ID'),
-  bucket: string().max(255).required().label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
-  endpoint: string().max(255).required().label('Endpoint'),
   key: string().max(255).label('Key'),
-  secretAccessKey: string().max(255).required().label('Secret Access Key')
+  adminPass: string().max(255).required().label('Admin Password')
 });
 
 // Actions
@@ -62,11 +53,9 @@ const toast = useToast();
 const onSubmit = async (values: any) => {
   try {
     const formBucket = {
-      accessKeyId: values.accessKeyId,
-      bucket: values.bucket,
       bucketName: values.bucketName,
-      endpoint: values.endpoint,
-      secretAccessKey: values.secretAccessKey,
+      key: values.key,
+      adminPass: values.adminPass,
     } as Bucket;
 
     // Only add key for new configurations
@@ -106,29 +95,11 @@ const onCancel = () => {
         help-text="The display name for the bucket - any name as you would like to see it listed in BC Stats LockBox."
         autofocus
       />
-      <TextInput
-        name="bucket"
-        label="Bucket *"
-        placeholder="bucket0123456789"
-        help-text="The name of the bucket given to you, e.g. yxwgj"
-      />
-      <TextInput
-        name="endpoint"
-        label="Endpoint *"
-        placeholder="https://example.com/"
-        help-text="The URL of your object storage namespace without the bucket identifier/name."
-      />
       <Password
-        name="accessKeyId"
-        label="Access key identifier / User account *"
-        placeholder="username"
-        help-text="User/Account identifier or username."
-      />
-      <Password
-        name="secretAccessKey"
-        label="Secret access key *"
+        name="adminPass"
+        label="Admin Password *"
         placeholder="password"
-        help-text="A password used to access the bucket."
+        help-text="Admin password to create a bucket"
       />
       <TextInput
         name="key"
