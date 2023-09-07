@@ -11,28 +11,26 @@ import type { Bucket } from '@/types';
 
 const bucket: Bucket = {
   active: true,
-  //accessKeyId: 'foo',
-  //bucket: 'bcbox',
-  //bucketId: '000',
+  accessKeyId: 'foo',
+  bucket: 'bcbox',
+  bucketId: '000',
   bucketName: 'unit',
-  //endpoint: 'https://not.a.url',
+  endpoint: 'https://not.a.url',
   key: 'test',
   region: 'us-east-1',
-  //secretAccessKey: '123',
-  adminPass: '123',
+  secretAccessKey: '123',
 };
 
 const bucket2: Bucket = {
   active: true,
-  //accessKeyId: 'bar',
-  //bucket: 'bcbox',
-  //bucketId: '111',
+  accessKeyId: 'bar',
+  bucket: 'bcbox',
+  bucketId: '111',
   bucketName: 'unit2',
-  //endpoint: 'https://not.a.url',
+  endpoint: 'https://not.a.url',
   key: 'test',
   region: 'us-east-1',
-  //secretAccessKey: '456',
-  adminPass: '456',
+  secretAccessKey: '456',
 };
 
 const readPerm = {

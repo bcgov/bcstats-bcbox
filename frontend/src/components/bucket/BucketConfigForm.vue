@@ -12,8 +12,12 @@ import { differential, joinPath } from '@/utils/utils';
 import type { Bucket } from '@/types';
 
 export type BucketForm = {
+  accessKeyId?: string;
+  bucket?: string;
   bucketName?: string;
+  endpoint?: string;
   key?: string;
+  secretAccessKey?: string;
   adminPass?: string;
 };
 
@@ -35,15 +39,23 @@ const { getUserId } = storeToRefs(useAuthStore());
 
 // Default form values
 const initialValues: BucketForm = {
+  accessKeyId: props.bucket?.accessKeyId,
+  bucket: props.bucket?.bucket,
   bucketName: props.bucket?.bucketName,
+  endpoint: props.bucket?.endpoint,
   key: props.bucket?.key,
+  secretAccessKey: props.bucket?.secretAccessKey,
   adminPass: props.bucket?.adminPass
 };
 
 // Form validation schema
 const schema = object({
+  accessKeyId: string().max(255).label('Access Key ID'),
+  bucket: string().max(255).label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
+  endpoint: string().max(255).label('Endpoint'),
   key: string().max(255).label('Key'),
+  secretAccessKey: string().max(255).label('Secret Access Key'),
   adminPass: string().max(255).required().label('Admin Password')
 });
 
@@ -53,8 +65,11 @@ const toast = useToast();
 const onSubmit = async (values: any) => {
   try {
     const formBucket = {
+      accessKeyId: values.accessKeyId,
+      bucket: values.bucket,
       bucketName: values.bucketName,
-      key: values.key,
+      endpoint: values.endpoint,
+      secretAccessKey: values.secretAccessKey,
       adminPass: values.adminPass,
     } as Bucket;
 
@@ -97,9 +112,9 @@ const onCancel = () => {
       />
       <Password
         name="adminPass"
-        label="Admin Password *"
+        label="Administrator Password *"
         placeholder="password"
-        help-text="Admin password to create a bucket"
+        help-text="Administrator password used to create/update the bucket."
       />
       <TextInput
         name="key"
