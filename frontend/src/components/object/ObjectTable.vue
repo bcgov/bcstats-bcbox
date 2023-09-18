@@ -9,6 +9,7 @@ import {
   ObjectFilters,
   ObjectPermission,
 } from '@/components/object';
+import { SyncButton } from '@/components/common';
 import { ShareObjectButton } from '@/components/object/share';
 //import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, InputSwitch, useToast } from '@/lib/primevue';
 import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, useToast } from '@/lib/primevue';
@@ -217,7 +218,7 @@ const filters = ref({
       -->
       <Column
         header="Actions"
-        header-style="width: 220px"
+        header-style="width: 250px"
         header-class="header-right"
         body-class="content-right action-buttons"
       >
@@ -239,6 +240,7 @@ const filters = ref({
           >
             <font-awesome-icon icon="fa-solid fa-users" />
           </Button>
+          <SyncButton :object-id="data.id" />
           <Button
             v-if="data.public || permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.READ, props.bucketId as string)"
