@@ -1,20 +1,18 @@
-# bcbox
+# bc stats lockbox
 
 ![Version: 0.0.9](https://img.shields.io/badge/Version-0.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 A frontend UI for managing access control to S3 Objects
 
-**Homepage:** <https://bcgov.github.io/bcbox>
-
 ## Maintainers
 
-| Name | Email | Url |
-| ---- | ------ | --- |
-| NR Common Service Showcase Team | <NR.CommonServiceShowcase@gov.bc.ca> | <https://bcgov.github.io/common-service-showcase/team.html> |
+| Name | Email |
+| ---- | ------ |
+| Data Systems & Services BC Stats Support Team |  |
 
 ## Source Code
 
-* <https://github.com/bcgov/bcbox>
+* <https://github.com/bcgov/bcstats-lockbox>
 
 ## Requirements
 
