@@ -175,7 +175,6 @@ watch( getVersions, () => {
               :mode="ButtonMode.ICON"
               :ids="[props.objectId]"
               :version-id="data.id"
-              :disabled="tableData.length === 1"
               @on-deleted-success="onDeletedSuccess"
             />
           </template>
