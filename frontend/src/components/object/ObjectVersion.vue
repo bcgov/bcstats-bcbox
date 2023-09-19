@@ -49,14 +49,22 @@ const rowClass = (data: any) => [{ 'selected-row': data.id === props.versionId }
 
 async function onDeletedSuccess(versionId: string) {
   toast.success('File deleted');
+
   await versionStore.fetchVersions({ objectId: props.objectId });
 
   // Navigate to new latest version if deleting active version
   if( props.versionId === versionId ) {
-    router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
-      objectId: props.objectId,
-      versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
-    }});
+    try{
+      router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
+        objectId: props.objectId,
+        versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
+      }});
+    // go back to the List Objects page if we deleted the last version
+    } catch (error: any){
+      router.push({ name: RouteNames.LIST_OBJECTS, query: {
+        bucketId: props.bucketId
+      }});
+    }
   }
 }
 
