@@ -52,19 +52,18 @@ async function onDeletedSuccess(versionId: string) {
 
   await versionStore.fetchVersions({ objectId: props.objectId });
 
+  // go back to the List Objects page if we deleted the last version
+  if (versionStore.findVersionsByObjectId(props.objectId).length === 0){
+    router.push({ name: RouteNames.LIST_OBJECTS, query: {
+      bucketId: props.bucketId
+    }});
+  }
   // Navigate to new latest version if deleting active version
-  if( props.versionId === versionId ) {
-    try{
-      router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
-        objectId: props.objectId,
-        versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
-      }});
-    // go back to the List Objects page if we deleted the last version
-    } catch (error: any){
-      router.push({ name: RouteNames.LIST_OBJECTS, query: {
-        bucketId: props.bucketId
-      }});
-    }
+  else if( props.versionId === versionId ) {
+    router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
+      objectId: props.objectId,
+      versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
+    }});
   }
 }
 
