@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { computed, onMounted, ref } from 'vue';
 
 import {
-  DeleteObjectButton,
+  DestroyObjectButton,
   DownloadObjectButton,
   ObjectSidebar,
   ObjectTable,
@@ -118,7 +118,7 @@ onMounted(async () => {
         :ids="selectedObjectIds"
         :mode="ButtonMode.BUTTON"
       />
-      <DeleteObjectButton
+      <DestroyObjectButton
         :disabled="displayUpload"
         :ids="selectedObjectIds"
         :mode="ButtonMode.BUTTON"
