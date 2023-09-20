@@ -50,20 +50,22 @@ const rowClass = (data: any) => [{ 'selected-row': data.id === props.versionId }
 async function onDeletedSuccess(versionId: string) {
   toast.success('File deleted');
 
-  await versionStore.fetchVersions({ objectId: props.objectId });
-
   // go back to the List Objects page if we deleted the last version
-  if (versionStore.findVersionsByObjectId(props.objectId).length === 0){
+  if (versionStore.findVersionsByObjectId(props.objectId).length === 1){
     router.push({ name: RouteNames.LIST_OBJECTS, query: {
       bucketId: props.bucketId
     }});
   }
-  // Navigate to new latest version if deleting active version
-  else if( props.versionId === versionId ) {
-    router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
-      objectId: props.objectId,
-      versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
-    }});
+  else {
+    await versionStore.fetchVersions({ objectId: props.objectId });
+    
+    // Navigate to new latest version if deleting active version
+    if( props.versionId === versionId ) {
+      router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
+        objectId: props.objectId,
+        versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
+      }});
+    }
   }
 }
 

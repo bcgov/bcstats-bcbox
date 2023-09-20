@@ -72,23 +72,25 @@ const showPermissions = async (objectId: string) => {
 async function onDeletedSuccess(versionId: string) {
   toast.success('File deleted');
 
-  await Promise.all([
-    objectStore.fetchObjects({objectId: props.objectId, userId: getUserId.value, bucketPerms: true}),
-    versionStore.fetchVersions({ objectId: props.objectId })
-  ]);
-
   // go back to the List Objects page if we deleted the last version
-  if (versionStore.findVersionsByObjectId(props.objectId).length === 0){
+  if (versionStore.findVersionsByObjectId(props.objectId).length === 1){
     router.push({ name: RouteNames.LIST_OBJECTS, query: {
       bucketId: bucketId.value
     }});
   }
-  // Navigate to new latest version if deleting active version
-  else if( props.versionId === versionId ) {
-    router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
-      objectId: props.objectId,
-      versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
-    }});
+  else {
+    await Promise.all([
+      objectStore.fetchObjects({objectId: props.objectId, userId: getUserId.value, bucketPerms: true}),
+      versionStore.fetchVersions({ objectId: props.objectId })
+    ]);
+    
+    // Navigate to new latest version if deleting active version
+    if( props.versionId === versionId ) {
+      router.push({ name: RouteNames.DETAIL_OBJECTS, query: {
+        objectId: props.objectId,
+        versionId: versionStore.findLatestVersionIdByObjectId(props.objectId)
+      }});
+    }
   }
 }
 
