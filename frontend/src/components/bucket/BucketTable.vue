@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 import BucketPermission from '@/components/bucket/BucketPermission.vue';
 import { Spinner } from '@/components/layout';
-import { SyncButton } from '@/components/common';
+//import { SyncButton } from '@/components/common';
 import { Button, Column, DataTable, Dialog, useConfirm } from '@/lib/primevue';
 import { useAppStore, useAuthStore, useBucketStore, usePermissionStore } from '@/store';
 import { Permissions, RouteNames } from '@/utils/constants';
@@ -128,29 +128,37 @@ async function deleteBucket(bucketId: string) {
             class="p-button-lg p-button-text"
             @click="showBucketConfig(data)"
           >
-            <font-awesome-icon icon="fas fa-cog" />
+            <v-tooltip text="Configure Bucket">
+              <font-awesome-icon icon="fas fa-cog" />
+            </v-tooltip>
           </Button>
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.MANAGE )"
             class="p-button-lg p-button-text"
             @click="showPermissions(data.bucketId, data.bucketName)"
           >
-            <font-awesome-icon icon="fa-solid fa-users" />
+            <v-tooltip text="Manage Bucket User Permissions">
+              <font-awesome-icon icon="fa-solid fa-users" />
+            </v-tooltip>
           </Button>
-          <SyncButton :bucket-id="data.bucketId" />
+          <!--<SyncButton :bucket-id="data.bucketId" />-->
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.READ )"
             class="p-button-lg p-button-rounded p-button-text"
             @click="showSidebarInfo(data.bucketId)"
           >
-            <font-awesome-icon icon="fa-solid fa-circle-info" />
+            <v-tooltip text="Bucket Details">
+              <font-awesome-icon icon="fa-solid fa-circle-info" />
+            </v-tooltip>
           </Button>
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.DELETE )"
             class="p-button-lg p-button-text p-button-danger"
             @click="confirmDeleteBucket(data.bucketId)"
           >
-            <font-awesome-icon icon="fa-solid fa-trash" />
+            <v-tooltip text="Delete Bucket">
+              <font-awesome-icon icon="fa-solid fa-trash" />
+            </v-tooltip>
           </Button>
         </template>
       </Column>

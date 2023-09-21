@@ -171,9 +171,11 @@ watch( [props, getObjects], async () => {
         <div
           class="action-buttons"
         >
-          <ShareObjectButton
-            :id="props.objectId"
-          />
+          <v-tooltip text="Share">
+            <ShareObjectButton
+              :id="props.objectId"
+            />
+          </v-tooltip>
           <DownloadObjectButton
             v-if="obj.public || permissionStore.isObjectActionAllowed(
               props.objectId, getUserId, Permissions.READ, bucketId)"
@@ -187,7 +189,9 @@ watch( [props, getObjects], async () => {
             class="p-button-lg p-button-text"
             @click="showPermissions(props.objectId)"
           >
-            <font-awesome-icon icon="fa-solid fa-users" />
+            <v-tooltip text="Manage File User Permissions">
+              <font-awesome-icon icon="fa-solid fa-users" />
+            </v-tooltip>
           </Button>
           <DeleteObjectButton
             v-if="permissionStore.isObjectActionAllowed(

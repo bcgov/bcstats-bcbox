@@ -78,7 +78,9 @@ const confirmDelete = () => {
     :disabled="props.disabled"
     @click="confirmDelete()"
   >
-    <font-awesome-icon icon="fa-solid fa-trash" />
+    <v-tooltip text="Delete File">
+      <font-awesome-icon icon="fa-solid fa-trash" />
+    </v-tooltip>
   </Button>
   <Button
     v-else

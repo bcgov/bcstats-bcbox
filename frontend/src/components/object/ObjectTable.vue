@@ -9,7 +9,7 @@ import {
   ObjectFilters,
   ObjectPermission,
 } from '@/components/object';
-import { SyncButton } from '@/components/common';
+//import { SyncButton } from '@/components/common';
 import { ShareObjectButton } from '@/components/object/share';
 //import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, InputSwitch, useToast } from '@/lib/primevue';
 import { Button, Column, DataTable, Dialog, FilterMatchMode, InputText, useToast } from '@/lib/primevue';
@@ -223,9 +223,11 @@ const filters = ref({
         body-class="content-right action-buttons"
       >
         <template #body="{ data }">
-          <ShareObjectButton
-            :id="data.id"
-          />
+          <v-tooltip text="Share">
+            <ShareObjectButton
+              :id="data.id"
+            />
+          </v-tooltip>
           <DownloadObjectButton
             v-if="data.public || permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.READ, props.bucketId as string)"
@@ -238,16 +240,20 @@ const filters = ref({
             class="p-button-lg p-button-text"
             @click="showPermissions(data.id)"
           >
-            <font-awesome-icon icon="fa-solid fa-users" />
+            <v-tooltip text="Manage File User Permissions">
+              <font-awesome-icon icon="fa-solid fa-users" />
+            </v-tooltip>
           </Button>
-          <SyncButton :object-id="data.id" />
+          <!--<SyncButton :object-id="data.id" />-->
           <Button
             v-if="data.public || permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.READ, props.bucketId as string)"
             class="p-button-lg p-button-rounded p-button-text"
             @click="showInfo(data.id)"
           >
-            <font-awesome-icon icon="fa-solid fa-circle-info" />
+            <v-tooltip text="File Details">
+              <font-awesome-icon icon="fa-solid fa-circle-info" />
+            </v-tooltip>
           </Button>
           <DestroyObjectButton
             v-if="permissionStore.isObjectActionAllowed(

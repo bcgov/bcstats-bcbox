@@ -59,7 +59,9 @@ const download = () => {
     :disabled="props.disabled"
     @click="download()"
   >
-    <font-awesome-icon icon="fa-solid fa-download" />
+    <v-tooltip text="Download File">
+      <font-awesome-icon icon="fa-solid fa-download" />
+    </v-tooltip>
   </Button>
   <Button
     v-else

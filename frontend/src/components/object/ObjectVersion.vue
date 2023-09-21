@@ -175,7 +175,9 @@ watch( getVersions, () => {
                      query: { objectId: props.objectId, versionId: data.id } }"
             >
               <Button class="p-button-lg p-button-rounded p-button-text">
-                <font-awesome-icon icon="fa-solid fa-circle-info" />
+                <v-tooltip text="File Details">
+                  <font-awesome-icon icon="fa-solid fa-circle-info" />
+                </v-tooltip>
               </Button>
             </router-link>
             <DeleteObjectButton
