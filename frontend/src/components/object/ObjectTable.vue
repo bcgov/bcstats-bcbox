@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 
 import { Spinner } from '@/components/layout';
 import {
-  DeleteObjectButton,
+  DestroyObjectButton,
   DownloadObjectButton,
   ObjectFilters,
   ObjectPermission,
@@ -249,7 +249,7 @@ const filters = ref({
           >
             <font-awesome-icon icon="fa-solid fa-circle-info" />
           </Button>
-          <DeleteObjectButton
+          <DestroyObjectButton
             v-if="permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.DELETE, props.bucketId as string)"
             :mode="ButtonMode.ICON"

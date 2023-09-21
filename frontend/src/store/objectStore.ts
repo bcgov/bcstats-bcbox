@@ -96,6 +96,26 @@ export const useObjectStore = defineStore('object', () => {
     }
   }
 
+  async function destroyObjects(objectIds: Array<string>) {
+    const bucketId = findObjectById(objectIds[0])?.bucketId;
+
+    try {
+      appStore.beginIndeterminateLoading();
+      await Promise.all(
+        objectIds.map(async (id) => {
+          await objectService.destroyObject(id);
+        })
+      );
+    }
+    catch (error: any) {
+      toast.error('Deleting object', error);
+    }
+    finally {
+      fetchObjects({ bucketId: bucketId, userId: getUserId.value, bucketPerms: true });
+      appStore.endIndeterminateLoading();
+    }
+  }
+
   async function downloadObject(objectId: string, versionId?: string) {
     try {
       appStore.beginIndeterminateLoading();
@@ -274,6 +294,7 @@ export const useObjectStore = defineStore('object', () => {
     // Actions
     createObject,
     deleteObjects,
+    destroyObjects,
     downloadObject,
     fetchObjects,
     findObjectById,
