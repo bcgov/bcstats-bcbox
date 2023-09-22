@@ -54,7 +54,7 @@ const schema = object({
   bucket: string().max(255).label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
   endpoint: string().max(255).label('Endpoint'),
-  key: string().max(255).required().label('Key'),
+  key: string().max(255).required().label('Bucket sub-path'),
   secretAccessKey: string().max(255).label('Secret Access Key'),
   adminPass: string().max(255).required().label('Admin Password')
 });
