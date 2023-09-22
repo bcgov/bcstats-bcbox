@@ -54,7 +54,7 @@ const schema = object({
   bucket: string().max(255).label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
   endpoint: string().max(255).label('Endpoint'),
-  key: string().max(255).label('Key'),
+  key: string().max(255).required().label('Key'),
   secretAccessKey: string().max(255).label('Secret Access Key'),
   adminPass: string().max(255).required().label('Admin Password')
 });
@@ -118,11 +118,9 @@ const onCancel = () => {
       />
       <TextInput
         name="key"
-        label="Bucket sub-path"
+        label="Bucket sub-path *"
         placeholder="/"
-        help-text="Optionally sets the bucket to mount at a specific subdirectory.
-          The directory will be created if it does not already exist.
-          This will default to the root '/' if not provided.
+        help-text="Sets the bucket to mount at a specific subdirectory.
           This value cannot be changed after the bucket is configured."
         :disabled="!!props.bucket"
       />
