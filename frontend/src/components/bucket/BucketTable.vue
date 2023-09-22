@@ -5,6 +5,7 @@ import { ref } from 'vue';
 import BucketPermission from '@/components/bucket/BucketPermission.vue';
 import { Spinner } from '@/components/layout';
 //import { SyncButton } from '@/components/common';
+import { ShareBucketButton } from '@/components/bucket/share';
 import { Button, Column, DataTable, Dialog, useConfirm } from '@/lib/primevue';
 import { useAppStore, useAuthStore, useBucketStore, usePermissionStore } from '@/store';
 import { Permissions, RouteNames } from '@/utils/constants';
@@ -123,6 +124,9 @@ async function deleteBucket(bucketId: string) {
         body-class="content-right action-buttons"
       >
         <template #body="{ data }">
+          <ShareBucketButton
+            :id="data.id"
+          />
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.UPDATE )"
             v-tooltip.bottom="'Configure Bucket'"

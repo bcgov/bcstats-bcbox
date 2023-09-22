@@ -1,0 +1,98 @@
+<script setup lang="ts">
+//import { storeToRefs } from 'pinia';
+import { computed, ref, onMounted } from 'vue';
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import ShareLinkContent from '@/components/bucket/share/ShareLinkContent.vue';
+import { Button, Dialog, TabView, TabPanel } from '@/lib/primevue';
+//import { useConfigStore, useObjectStore } from '@/store';
+import { useBucketStore } from '@/store';
+
+import type { Ref } from 'vue';
+import type { Bucket } from '@/types';
+
+// Props
+type Props = {
+  id: string;
+};
+
+const props = withDefaults(defineProps<Props>(), {});
+
+// Store
+const bucketStore = useBucketStore();
+//const { getConfig } = storeToRefs(useConfigStore());
+
+// State
+const bucket: Ref<Bucket | undefined> = ref(undefined);
+
+// Dialog
+const displayShareDialog = ref(false);
+
+// Share link
+const bcBoxLink = computed(() => {
+  return `${window.location.origin}/list/objects?bucketId=${props.id}`;
+});
+/*const comsUrl = computed(() => {
+  return `${getConfig.value.coms?.apiPath}/object/${props.id}`;
+});*/
+
+onMounted( () => {
+  bucket.value = bucketStore.findBucketById(props.id);
+});
+</script>
+
+<template>
+  <Dialog
+    v-model:visible="displayShareDialog"
+    header="Share"
+    :modal="true"
+    :style="{ minWidth: '700px' }"
+    class="bcbox-info-dialog"
+  >
+    <template #header>
+      <font-awesome-icon
+        icon="fa-solid fa-share-alt"
+        fixed-width
+      />
+      <span class="p-dialog-title">Share</span>
+    </template>
+
+    <h3 class="bcbox-info-dialog-subhead">
+      {{ bucket?.bucketName }}
+    </h3>
+
+    <ul class="mb-4">
+      <li>
+        To share to a BC Stats LockBox user, you must first apply permissions to them
+      </li>
+    </ul>
+
+    <TabView>
+      <TabPanel
+        header="BC Stats LockBox share link"
+      >
+        <ShareLinkContent
+          :share-link="bcBoxLink"
+          label="Share Link"
+        />
+      </TabPanel>
+    </TabView>
+  </Dialog>
+
+  <Button
+    v-tooltip.bottom="'Share'"
+    class="p-button-lg p-button-text"
+    @click="displayShareDialog = true"
+  >
+    <font-awesome-icon icon="fa-solid fa-share-alt" />
+  </Button>
+</template>
+
+<style scoped lang="scss">
+h2 {
+  font-weight: bold;
+}
+ul {
+  padding-left: 22px;
+}
+</style>

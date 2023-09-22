@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import {
   DestroyObjectButton,
@@ -16,10 +17,11 @@ import {
   useObjectStore,
   usePermissionStore
 } from '@/store';
-import { Permissions } from '@/utils/constants';
+import { Permissions, RouteNames } from '@/utils/constants';
 import { ButtonMode } from '@/utils/enums';
 
 import type { Ref } from 'vue';
+import type { Bucket } from '@/types';
 
 // Props
 type Props = {
@@ -42,12 +44,14 @@ const { getUserId } = storeToRefs(useAuthStore());
 // State
 const displayUpload = ref(false);
 const objectInfoId: Ref<string | undefined> = ref(undefined);
+const bucket: Ref<Bucket | undefined> = ref(undefined);
 
 const selectedObjectIds = computed(() => {
   return getSelectedObjects.value.map((o) => o.id);
 });
 
 // Actions
+const router = useRouter();
 const toast = useToast();
 
 const showObjectInfo = async (objectId: string | undefined) => {
@@ -79,14 +83,29 @@ function onDeletedSuccess() {
   toast.success('File deleted');
 }
 
-onMounted(async () => {
+onBeforeMount( async () =>{
+  if(props.bucketId){
+    await permissionStore.fetchBucketPermissions({userId: getUserId.value, objectPerms: true});
+    await bucketStore.fetchBuckets({userId: getUserId.value, objectPerms: true});
+    bucket.value = bucketStore.findBucketById(props.bucketId);
+
+    if (!bucket.value || 
+        !permissionStore.isBucketActionAllowed(bucket.value.bucketId, getUserId.value, Permissions.READ)){
+      router.replace({name: RouteNames.FORBIDDEN});
+    }
+
+    await objectStore.fetchObjects({ bucketId: props.bucketId, userId: getUserId.value, bucketPerms: true});
+  }
+});
+
+/*onMounted(async () => {
   // Removed for now
   // updateBreadcrumb();
 
   await bucketStore.fetchBuckets({ userId: getUserId.value, objectPerms: true });
   // TODO: userId+bucketPerms bringing back deleted files??
   await objectStore.fetchObjects({ bucketId: props.bucketId, userId: getUserId.value, bucketPerms: true });
-});
+});*/
 
 </script>
 
