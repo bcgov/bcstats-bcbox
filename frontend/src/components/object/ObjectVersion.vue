@@ -174,10 +174,8 @@ watch( getVersions, () => {
               :to="{ name: RouteNames.DETAIL_OBJECTS,
                      query: { objectId: props.objectId, versionId: data.id } }"
             >
-              <Button class="p-button-lg p-button-rounded p-button-text">
-                <v-tooltip text="File Details">
-                  <font-awesome-icon icon="fa-solid fa-circle-info" />
-                </v-tooltip>
+              <Button v-tooltip.bottom="'File Details'" class="p-button-lg p-button-rounded p-button-text">
+                <font-awesome-icon icon="fa-solid fa-circle-info" />
               </Button>
             </router-link>
             <DeleteObjectButton
