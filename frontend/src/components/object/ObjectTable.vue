@@ -91,7 +91,11 @@ watch( getObjects, async () => {
 });
 
 watch( selectedObjects, () => {
-  objectStore.setSelectedObjects(selectedObjects.value);
+  if (selectedObjects.value.length > 0){
+    objectStore.setSelectedObjects(selectedObjects.value);
+  } else {
+    objectStore.setSelectedObjects([]);
+  }
 });
 
 // Datatable filter(s)
