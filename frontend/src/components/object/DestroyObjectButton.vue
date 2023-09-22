@@ -44,6 +44,8 @@ const confirmDelete = () => {
         try {
           await objectStore.destroyObjects(props.ids);
           emit('on-deleted-success', props.versionId);
+          // clear selected objects
+          objectStore.setSelectedObjects([]);
         } catch (error: any) {
           toast.error(`Error deleting one or more ${item}s`);
           emit('on-deleted-error');
