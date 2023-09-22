@@ -71,7 +71,7 @@ async function deleteBucket(bucketId: string) {
       responsive-layout="scroll"
       :paginator="true"
       :rows="10"
-      paginator-template="RowsPerPageDropdown CurrentPageReport PrevPageLink NextPageLink "
+      paginator-template="RowsPerPageDropdown CurrentPageReport FirstPageLink PrevPageLink JumpToPageDropdown NextPageLink LastPageLink "
       current-page-report-template="{first}-{last} of {totalRecords}"
       :rows-per-page-options="[10, 20, 50]"
       sort-field="bucketName"
