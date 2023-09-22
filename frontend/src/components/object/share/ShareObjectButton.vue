@@ -99,6 +99,7 @@ onMounted( () => {
   </Dialog>
 
   <Button
+    v-tooltip.bottom="'Share'"
     class="p-button-lg p-button-text"
     @click="displayShareDialog = true"
   >

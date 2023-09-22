@@ -135,6 +135,7 @@ const filters = ref({
           </span>
 
           <Button
+            v-tooltip.bottom="'Refresh'"
             class="ml-2"
             icon="pi pi-refresh"
             outlined
@@ -223,11 +224,9 @@ const filters = ref({
         body-class="content-right action-buttons"
       >
         <template #body="{ data }">
-          <v-tooltip text="Share">
-            <ShareObjectButton
-              :id="data.id"
-            />
-          </v-tooltip>
+          <ShareObjectButton
+            :id="data.id"
+          />
           <DownloadObjectButton
             v-if="data.public || permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.READ, props.bucketId as string)"
@@ -237,23 +236,21 @@ const filters = ref({
           <Button
             v-if="permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.MANAGE, props.bucketId as string)"
+            v-tooltip.bottom="'Manage File User Permissions'"
             class="p-button-lg p-button-text"
             @click="showPermissions(data.id)"
           >
-            <v-tooltip text="Manage File User Permissions">
-              <font-awesome-icon icon="fa-solid fa-users" />
-            </v-tooltip>
+            <font-awesome-icon icon="fa-solid fa-users" />
           </Button>
           <!--<SyncButton :object-id="data.id" />-->
           <Button
             v-if="data.public || permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.READ, props.bucketId as string)"
+            v-tooltip.bottom="'File Details'"
             class="p-button-lg p-button-rounded p-button-text"
             @click="showInfo(data.id)"
           >
-            <v-tooltip text="File Details">
-              <font-awesome-icon icon="fa-solid fa-circle-info" />
-            </v-tooltip>
+            <font-awesome-icon icon="fa-solid fa-circle-info" />
           </Button>
           <DestroyObjectButton
             v-if="permissionStore.isObjectActionAllowed(

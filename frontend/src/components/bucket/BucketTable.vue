@@ -125,40 +125,36 @@ async function deleteBucket(bucketId: string) {
         <template #body="{ data }">
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.UPDATE )"
+            v-tooltip.bottom="'Configure Bucket'"
             class="p-button-lg p-button-text"
             @click="showBucketConfig(data)"
           >
-            <v-tooltip text="Configure Bucket">
-              <font-awesome-icon icon="fas fa-cog" />
-            </v-tooltip>
+            <font-awesome-icon icon="fas fa-cog" />
           </Button>
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.MANAGE )"
+            v-tooltip.bottom="'Manage Bucket User Permissions'"
             class="p-button-lg p-button-text"
             @click="showPermissions(data.bucketId, data.bucketName)"
           >
-            <v-tooltip text="Manage Bucket User Permissions">
-              <font-awesome-icon icon="fa-solid fa-users" />
-            </v-tooltip>
+            <font-awesome-icon icon="fa-solid fa-users" />
           </Button>
           <!--<SyncButton :bucket-id="data.bucketId" />-->
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.READ )"
+            v-tooltip.bottom="'Bucket Details'"
             class="p-button-lg p-button-rounded p-button-text"
             @click="showSidebarInfo(data.bucketId)"
           >
-            <v-tooltip text="Bucket Details">
-              <font-awesome-icon icon="fa-solid fa-circle-info" />
-            </v-tooltip>
+            <font-awesome-icon icon="fa-solid fa-circle-info" />
           </Button>
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.DELETE )"
+            v-tooltip.bottom="'Delete Bucket'"
             class="p-button-lg p-button-text p-button-danger"
             @click="confirmDeleteBucket(data.bucketId)"
           >
-            <v-tooltip text="Delete Bucket">
-              <font-awesome-icon icon="fa-solid fa-trash" />
-            </v-tooltip>
+            <font-awesome-icon icon="fa-solid fa-trash" />
           </Button>
         </template>
       </Column>

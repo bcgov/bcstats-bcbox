@@ -55,13 +55,12 @@ const download = () => {
 
   <Button
     v-if="props.mode === ButtonMode.ICON"
+    v-tooltip.bottom="'Download File'"
     class="p-button-lg p-button-text"
     :disabled="props.disabled"
     @click="download()"
   >
-    <v-tooltip text="Download File">
-      <font-awesome-icon icon="fa-solid fa-download" />
-    </v-tooltip>
+    <font-awesome-icon icon="fa-solid fa-download" />
   </Button>
   <Button
     v-else

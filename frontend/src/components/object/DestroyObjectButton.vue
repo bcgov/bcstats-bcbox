@@ -74,13 +74,12 @@ const confirmDelete = () => {
 
   <Button
     v-if="props.mode === ButtonMode.ICON"
+    v-tooltip.bottom="'Delete File'"
     class="p-button-lg p-button-text p-button-danger"
     :disabled="props.disabled"
     @click="confirmDelete()"
   >
-    <v-tooltip text="Delete File">
-      <font-awesome-icon icon="fa-solid fa-trash" />
-    </v-tooltip>
+    <font-awesome-icon icon="fa-solid fa-trash" />
   </Button>
   <Button
     v-else
