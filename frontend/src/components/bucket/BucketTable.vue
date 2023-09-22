@@ -125,7 +125,7 @@ async function deleteBucket(bucketId: string) {
       >
         <template #body="{ data }">
           <ShareBucketButton
-            :id="data.id"
+            :id="data.bucketId"
           />
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.UPDATE )"
