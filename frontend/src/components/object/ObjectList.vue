@@ -85,19 +85,13 @@ function onDeletedSuccess() {
 
 onBeforeMount( async () =>{
   if(props.bucketId){
-    const permResponse = await permissionStore.fetchBucketPermissions({userId: getUserId.value, objectPerms: true});
+    const userId = await getUserId.value;
+    const permResponse = await permissionStore.fetchBucketPermissions({userId: userId, objectPerms: true});
     if( !permResponse.some( (x: BucketPermission) => x.bucketId === props.bucketId ) ) {
       router.replace({ name: RouteNames.FORBIDDEN });
     }
     else {
       await bucketStore.fetchBuckets({userId: getUserId.value, objectPerms: true});
-      bucket.value = bucketStore.findBucketById(props.bucketId);
-
-      if (!bucket.value || 
-          !permissionStore.isBucketActionAllowed(bucket.value.bucketId, getUserId.value, Permissions.READ)){
-        router.replace({name: RouteNames.FORBIDDEN});
-      }
-
       await objectStore.fetchObjects({ bucketId: props.bucketId, userId: getUserId.value, bucketPerms: true});
     }
   }
