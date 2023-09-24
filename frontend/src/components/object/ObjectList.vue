@@ -21,7 +21,7 @@ import { Permissions, RouteNames } from '@/utils/constants';
 import { ButtonMode } from '@/utils/enums';
 
 import type { Ref } from 'vue';
-import type { Bucket, BucketPermission } from '@/types';
+import type { BucketPermission } from '@/types';
 
 // Props
 type Props = {
@@ -44,7 +44,6 @@ const { getUserId } = storeToRefs(useAuthStore());
 // State
 const displayUpload = ref(false);
 const objectInfoId: Ref<string | undefined> = ref(undefined);
-const bucket: Ref<Bucket | undefined> = ref(undefined);
 
 const selectedObjectIds = computed(() => {
   return getSelectedObjects.value.map((o) => o.id);
