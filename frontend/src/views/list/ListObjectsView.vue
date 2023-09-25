@@ -42,6 +42,8 @@ onErrorCaptured((e: Error) => {
 onBeforeMount( async () => {
   const router = useRouter();
 
+  if (!getUserId.value) await useAuthStore()._updateState();
+
   const permResponse = await permissionStore.fetchBucketPermissions({ userId: getUserId.value, objectPerms: true });
   if( !permResponse.some( (x: BucketPermission) => x.bucketId === props.bucketId ) ) {
     router.replace({ name: RouteNames.FORBIDDEN });
