@@ -84,8 +84,10 @@ function onDeletedSuccess() {
 
 onBeforeMount( async () =>{
   if(props.bucketId){
-    const userId = await getUserId.value;
-    const permResponse = await permissionStore.fetchBucketPermissions({userId: userId, objectPerms: true});
+    if (getUserId.value == null){
+      await useAuthStore()._updateState();
+    }
+    const permResponse = await permissionStore.fetchBucketPermissions({userId: getUserId.value, objectPerms: true});
     if( !permResponse.some( (x: BucketPermission) => x.bucketId === props.bucketId ) ) {
       router.replace({ name: RouteNames.FORBIDDEN });
     }
