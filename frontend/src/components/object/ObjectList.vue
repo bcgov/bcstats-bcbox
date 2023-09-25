@@ -84,7 +84,7 @@ function onDeletedSuccess() {
 
 onBeforeMount( async () =>{
   if(props.bucketId){
-    if (getUserId.value == null){
+    if (getUserId.value == undefined){
       await useAuthStore()._updateState();
     }
     const permResponse = await permissionStore.fetchBucketPermissions({userId: getUserId.value, objectPerms: true});
