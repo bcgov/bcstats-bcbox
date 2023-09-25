@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { computed, onBeforeMount, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, onMounted, ref } from 'vue';
+//import { useRouter } from 'vue-router';
 
 import {
   DestroyObjectButton,
@@ -17,11 +17,12 @@ import {
   useObjectStore,
   usePermissionStore
 } from '@/store';
-import { Permissions, RouteNames } from '@/utils/constants';
+//import { Permissions, RouteNames } from '@/utils/constants';
+import { Permissions } from '@/utils/constants';
 import { ButtonMode } from '@/utils/enums';
 
 import type { Ref } from 'vue';
-import type { BucketPermission } from '@/types';
+//import type { BucketPermission } from '@/types';
 
 // Props
 type Props = {
@@ -50,7 +51,7 @@ const selectedObjectIds = computed(() => {
 });
 
 // Actions
-const router = useRouter();
+//const router = useRouter();
 const toast = useToast();
 
 const showObjectInfo = async (objectId: string | undefined) => {
@@ -82,7 +83,7 @@ function onDeletedSuccess() {
   toast.success('File deleted');
 }
 
-onBeforeMount( async () =>{
+/*onBeforeMount( async () =>{
   if(props.bucketId){
     if (getUserId.value == undefined){
       await useAuthStore()._updateState();
@@ -96,16 +97,18 @@ onBeforeMount( async () =>{
       await objectStore.fetchObjects({ bucketId: props.bucketId, userId: getUserId.value, bucketPerms: true});
     }
   }
-});
+});*/
 
-/*onMounted(async () => {
+onMounted(async () => {
   // Removed for now
   // updateBreadcrumb();
 
+  if (getUserId.value == undefined) await useAuthStore()._updateState();
+  
   await bucketStore.fetchBuckets({ userId: getUserId.value, objectPerms: true });
   // TODO: userId+bucketPerms bringing back deleted files??
   await objectStore.fetchObjects({ bucketId: props.bucketId, userId: getUserId.value, bucketPerms: true });
-});*/
+});
 
 </script>
 
