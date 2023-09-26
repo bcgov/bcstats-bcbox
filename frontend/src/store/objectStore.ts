@@ -5,6 +5,7 @@ import { useToast } from '@/lib/primevue';
 import { objectService } from '@/services';
 import { useAppStore, useAuthStore, usePermissionStore } from '@/store';
 import { partition } from '@/utils/utils';
+import { Permissions } from '@/utils/constants';
 
 import type { AxiosRequestConfig } from 'axios';
 import type { Ref } from 'vue';
@@ -103,7 +104,12 @@ export const useObjectStore = defineStore('object', () => {
       appStore.beginIndeterminateLoading();
       await Promise.all(
         objectIds.map(async (id) => {
-          await objectService.destroyObject(id);
+          if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId))
+            await objectService.destroyObject(id);
+          else {
+            toast.error('Deleting object', 'User does not have DELETE permissions on file ' + findObjectById(id)?.name);
+            throw new Error('Error deleting object');
+          }
         })
       );
     }
