@@ -107,8 +107,7 @@ export const useObjectStore = defineStore('object', () => {
           if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId))
             await objectService.destroyObject(id);
           else {
-            toast.error('Deleting object', 'User does not have DELETE permissions on file ' + findObjectById(id)?.name);
-            throw new Error('Error deleting object');
+            throw new Error('User does not have Delete permissions on file ' + findObjectById(id)?.name);
           }
         })
       );
