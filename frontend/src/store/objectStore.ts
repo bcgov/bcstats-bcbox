@@ -107,7 +107,7 @@ export const useObjectStore = defineStore('object', () => {
           if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId))
             await objectService.destroyObject(id);
           else {
-            throw new Error('User does not have Delete permissions on file ' + findObjectById(id)?.name);
+            throw new Error('You do not have Delete permissions on file ' + findObjectById(id)?.name);
           }
         })
       );
@@ -127,10 +127,10 @@ export const useObjectStore = defineStore('object', () => {
 
     try {
       appStore.beginIndeterminateLoading();
-      if (permissionStore.isObjectActionAllowed(objectId, getUserId.value, Permissions.DELETE, bucketId))
+      if (permissionStore.isObjectActionAllowed(objectId, getUserId.value, Permissions.READ, bucketId))
         await objectService.getObject(objectId, versionId);
       else {
-        throw new Error('User does not have Read permissions on file ' + findObjectById(objectId)?.name);
+        throw new Error('You do not have Read permissions on file ' + findObjectById(objectId)?.name);
       }
     }
     catch (error: any) {
