@@ -123,9 +123,15 @@ export const useObjectStore = defineStore('object', () => {
   }
 
   async function downloadObject(objectId: string, versionId?: string) {
+    const bucketId = findObjectById(objectId)?.bucketId;
+
     try {
       appStore.beginIndeterminateLoading();
-      await objectService.getObject(objectId, versionId);
+      if (permissionStore.isObjectActionAllowed(objectId, getUserId.value, Permissions.DELETE, bucketId))
+        await objectService.getObject(objectId, versionId);
+      else {
+        throw new Error('User does not have Read permissions on file ' + findObjectById(objectId)?.name);
+      }
     }
     catch (error: any) {
       toast.error('Downloading object', error);
