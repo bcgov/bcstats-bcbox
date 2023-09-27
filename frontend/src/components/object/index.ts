@@ -1,5 +1,4 @@
 export { default as DeleteObjectButton } from './DeleteObjectButton.vue';
-export { default as DestroyObjectButton } from './DestroyObjectButton.vue';
 export { default as DownloadObjectButton } from './DownloadObjectButton.vue';
 export { default as ObjectAccess } from './ObjectAccess.vue';
 export { default as ObjectFileDetails } from './ObjectFileDetails.vue';

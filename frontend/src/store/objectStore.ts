@@ -84,28 +84,8 @@ export const useObjectStore = defineStore('object', () => {
       appStore.beginIndeterminateLoading();
       await Promise.all(
         objectIds.map(async (id) => {
-          await objectService.deleteObject(id, versionId);
-        })
-      );
-    }
-    catch (error: any) {
-      toast.error('Deleting object', error);
-    }
-    finally {
-      fetchObjects({ bucketId: bucketId, userId: getUserId.value, bucketPerms: true });
-      appStore.endIndeterminateLoading();
-    }
-  }
-
-  async function destroyObjects(objectIds: Array<string>) {
-    const bucketId = findObjectById(objectIds[0])?.bucketId;
-
-    try {
-      appStore.beginIndeterminateLoading();
-      await Promise.all(
-        objectIds.map(async (id) => {
           if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId))
-            await objectService.destroyObject(id);
+            await objectService.deleteObject(id, versionId);
           else {
             throw new Error('You do not have Delete permissions on file ' + findObjectById(id)?.name);
           }
@@ -306,7 +286,6 @@ export const useObjectStore = defineStore('object', () => {
     // Actions
     createObject,
     deleteObjects,
-    destroyObjects,
     downloadObject,
     fetchObjects,
     findObjectById,

@@ -93,16 +93,6 @@ export default {
   },
 
   /**
-   * @function destroyObject
-   * Delete an object and all it's versions
-   * @param {string} objectId The id for the object to destroy
-   * @returns {Promise} An axios response
-   */
-  destroyObject(objectId: string) {
-    return comsAxios().delete(`${PATH}/${objectId}/destroy`, {});
-  },
-
-  /**
    * @function getMetadata
    * Get an object's metadata
    * @param {any} headers Optional request headers
