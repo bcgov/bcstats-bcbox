@@ -138,7 +138,7 @@ async function deleteBucket(bucketId: string) {
           </Button>
           <Button
             v-if="permissionStore.isBucketActionAllowed(data.bucketId, getUserId, Permissions.MANAGE )"
-            v-tooltip.bottom="'Manage Bucket Permissions'"
+            v-tooltip.bottom="'Bucket Permissions'"
             class="p-button-lg p-button-text"
             @click="showPermissions(data.bucketId, data.bucketName)"
           >

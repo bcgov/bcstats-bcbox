@@ -237,7 +237,7 @@ const filters = ref({
           <Button
             v-if="permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.MANAGE, props.bucketId as string)"
-            v-tooltip.bottom="'Manage File Permissions'"
+            v-tooltip.bottom="'File Permissions'"
             class="p-button-lg p-button-text"
             @click="showPermissions(data.id)"
           >
