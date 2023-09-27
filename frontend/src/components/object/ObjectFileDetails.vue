@@ -186,7 +186,7 @@ watch( [props, getObjects], async () => {
           <Button
             v-if="permissionStore.isObjectActionAllowed(
               props.objectId, getUserId, Permissions.MANAGE, bucketId)"
-            v-tooltip.bottom="'Manage User Permissions'"
+            v-tooltip.bottom="'File Permissions'"
             class="p-button-lg p-button-text"
             @click="showPermissions(props.objectId)"
           >
