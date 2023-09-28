@@ -42,7 +42,7 @@ const confirmDelete = () => {
       accept: async () => {
         try {
           await objectStore.deleteObjects(props.ids, props.versionId);
-          emit('on-deleted-success', props.versionId);
+          //emit('on-deleted-success', props.versionId);
         } catch (error: any) {
           //toast.error(`Error deleting one or more ${item}s`);
           emit('on-deleted-error');

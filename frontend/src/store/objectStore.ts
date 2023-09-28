@@ -84,8 +84,10 @@ export const useObjectStore = defineStore('object', () => {
       appStore.beginIndeterminateLoading();
       await Promise.all(
         objectIds.map(async (id) => {
-          if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId))
+          if (permissionStore.isObjectActionAllowed(id, getUserId.value, Permissions.DELETE, bucketId)){
             await objectService.deleteObject(id, versionId);
+            toast.success('File deleted');
+          }
           else {
             throw new Error('You do not have Delete permissions on file ' + findObjectById(id)?.name);
           }
