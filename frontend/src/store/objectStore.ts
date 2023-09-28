@@ -96,9 +96,11 @@ export const useObjectStore = defineStore('object', () => {
     }
     catch (error: any) {
       toast.error('Deleting object', error);
+      throw new Error('Error deleting object');
+    }
+    finally {
       fetchObjects({ bucketId: bucketId, userId: getUserId.value, bucketPerms: true });
       appStore.endIndeterminateLoading();
-      throw new Error('Error deleting object');
     }
   }
 
