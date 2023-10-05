@@ -3,13 +3,12 @@ import { storeToRefs } from 'pinia';
 import { computed, onMounted, ref } from 'vue';
 
 import {
-  DeleteObjectButton,
   DownloadObjectButton,
   ObjectSidebar,
   ObjectTable,
   ObjectUpload
 } from '@/components/object';
-import { Button, useToast } from '@/lib/primevue';
+import { Button } from '@/lib/primevue';
 import {
   useAuthStore,
   useBucketStore,
@@ -48,7 +47,7 @@ const selectedObjectIds = computed(() => {
 });
 
 // Actions
-const toast = useToast();
+//const toast = useToast();
 
 const showObjectInfo = async (objectId: string | undefined) => {
   objectInfoId.value = objectId;
@@ -75,9 +74,9 @@ const closeUpload = () => {
 //   }
 // };
 
-function onDeletedSuccess() {
+/*function onDeletedSuccess() {
   toast.success('File deleted');
-}
+}*/
 
 onMounted(async () => {
   // Removed for now
