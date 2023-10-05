@@ -118,12 +118,12 @@ onMounted(async () => {
         :ids="selectedObjectIds"
         :mode="ButtonMode.BUTTON"
       />
-      <DeleteObjectButton
+      <!--<DeleteObjectButton
         :disabled="displayUpload"
         :ids="selectedObjectIds"
         :mode="ButtonMode.BUTTON"
         @on-deleted-success="onDeletedSuccess"
-      />
+      />-->
     </div>
 
     <div
