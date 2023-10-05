@@ -35,6 +35,14 @@ const { getIsAuthenticated } = storeToRefs(useAuthStore());
               href="https://github.com/bcgov/bcbox/wiki"
             >Help</a>
           </li> -->
+          <li
+            v-if="getIsAuthenticated"
+            class="mr-2"
+          >
+            <router-link :to="{ name: RouteNames.AUDIT_REPORT }">
+              Audit Report
+            </router-link>
+          </li>
         </ol>
       </template>
     </Toolbar>

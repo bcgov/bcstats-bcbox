@@ -1,4 +1,5 @@
 export type { Bucket } from './Bucket';
+export type { BucketObject } from './BucketObject';
 export type { BucketPermission } from './BucketPermission';
 export type { COMSObject } from './COMSObject';
 export type { COMSObjectPermission } from './COMSObjectPermission';
@@ -26,5 +27,6 @@ export type { ObjectDeletePermissionsOptions } from './options/ObjectDeletePermi
 export type { ObjectGetPermissionsOptions } from './options/ObjectGetPermissionsOptions';
 export type { ObjectSearchPermissionsOptions } from './options/ObjectSearchPermissionsOptions';
 export type { SearchBucketsOptions } from './options/SearchBucketsOptions';
+export type { SearchBucketObjectsOptions } from './options/SearchBucketObjectsOptions';
 export type { SearchObjectsOptions } from './options/SearchObjectsOptions';
 export type { SearchUsersOptions } from './options/SearchUsersOptions';

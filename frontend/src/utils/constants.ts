@@ -29,6 +29,7 @@ export const Regex = Object.freeze({
 });
 
 export const RouteNames = Object.freeze({
+  AUDIT_REPORT: 'auditReport',
   CALLBACK: 'callback',
   CREATE_BUCKET: 'createBucket',
   DETAIL_OBJECTS: 'detailObjects',

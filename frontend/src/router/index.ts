@@ -91,6 +91,13 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/auditReport',
+    name: RouteNames.AUDIT_REPORT,
+    component: () => import('@/views/reports/AuditReport.vue'),
+    meta: { requiresAuth: true, breadcrumb: 'Audit Report', title: 'Audit Report' },
+    props: createProps
+  },
+  {
     path: '/forbidden',
     name: RouteNames.FORBIDDEN,
     component: () => import('@/views/Forbidden.vue'),
