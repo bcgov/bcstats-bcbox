@@ -39,8 +39,8 @@ const { getIsAuthenticated } = storeToRefs(useAuthStore());
             v-if="getIsAuthenticated"
             class="mr-2"
           >
-            <router-link :to="{ name: RouteNames.AUDIT_REPORT }">
-              Audit Report
+            <router-link :to="{ name: RouteNames.USER_ACCESS_REPORT }">
+              User Access Report
             </router-link>
           </li>
         </ol>

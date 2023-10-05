@@ -7,7 +7,7 @@ import { useAppStore, usePermissionStore } from '@/store';
 import { partition } from '@/utils/utils';
 
 import type { Ref } from 'vue';
-import type { BucketObject, BucketObjectSearchPermissionsOptions } from '@/types';
+import type { BucketObject, BucketSearchPermissionsOptions } from '@/types';
 
 export type BucketObjectStoreState = {
   bucketObjects: Ref<Array<BucketObject>>
@@ -31,7 +31,7 @@ export const useBucketObjectStore = defineStore('bucketObject', () => {
   };
 
   // Actions
-  async function fetchBucketObjects(params?: BucketObjectSearchPermissionsOptions) {
+  async function fetchBucketObjects(params?: BucketSearchPermissionsOptions) {
     try {
       appStore.beginIndeterminateLoading();
 

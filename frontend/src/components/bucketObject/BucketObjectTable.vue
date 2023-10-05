@@ -1,20 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 
-import BucketPermission from '@/components/bucket/BucketPermission.vue';
 import { Spinner } from '@/components/layout';
-import { Button, Column, DataTable, Dialog, useConfirm } from '@/lib/primevue';
-import { useAppStore, useAuthStore, useBucketObjectStore } from '@/store';
-import { Permissions, RouteNames } from '@/utils/constants';
-
-import type { Ref } from 'vue';
-import type { Bucket } from '@/types';
+import { Column, DataTable } from '@/lib/primevue';
+import { useAppStore, useBucketObjectStore } from '@/store';
+import { RouteNames } from '@/utils/constants';
 
 // Store
 const bucketObjectStore = useBucketObjectStore();
 const { getIsLoading } = storeToRefs(useAppStore());
-const { getUserId } = storeToRefs(useAuthStore());
 const { getBucketObjects } = storeToRefs(bucketObjectStore);
 
 // State

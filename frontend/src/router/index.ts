@@ -91,10 +91,10 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
-    path: '/auditReport',
-    name: RouteNames.AUDIT_REPORT,
-    component: () => import('@/views/reports/AuditReport.vue'),
-    meta: { requiresAuth: true, breadcrumb: 'Audit Report', title: 'Audit Report' },
+    path: '/userAccessReport',
+    name: RouteNames.USER_ACCESS_REPORT,
+    component: () => import('@/views/reports/UserAccessReport.vue'),
+    meta: { requiresAuth: true, breadcrumb: 'User Access Report', title: 'User Access Report' },
     props: createProps
   },
   {

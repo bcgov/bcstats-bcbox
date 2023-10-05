@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 
 import { BucketObjectTable } from '@/components/bucketObject';
-import { Button, Dialog, Message } from '@/lib/primevue';
-import { useAuthStore, useBucketObjectStore, usePermissionStore } from '@/store';
-
-import type { Ref } from 'vue';
-import type { Bucket } from '@/types';
+import { useAuthStore, useBucketObjectStore } from '@/store';
 
 // Store
 const bucketObjectStore = useBucketObjectStore();
@@ -25,8 +21,7 @@ onMounted(async () => {
   <div>
     <div class="flex">
       <div class="flex-grow-1">
-        <BucketObjectTable
-        />
+        <BucketObjectTable />
       </div>
     </div>
   </div>

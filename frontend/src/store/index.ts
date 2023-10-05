@@ -1,6 +1,7 @@
 export { default as useAppStore } from './appStore';
 export { default as useAuthStore } from './authStore';
 export { default as useBucketStore } from './bucketStore';
+export { default as useBucketObjectStore } from './bucketObjectStore';
 export { default as useConfigStore } from './configStore';
 export { default as useMetadataStore } from './metadataStore';
 export { default as useNavStore } from './navStore';

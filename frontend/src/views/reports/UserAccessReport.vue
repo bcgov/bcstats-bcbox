@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onBeforeMount, onErrorCaptured, onMounted, ref } from 'vue';
+import { onBeforeMount, onErrorCaptured, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { BucketObjectList } from '@/components/bucketObject';
@@ -9,7 +9,7 @@ import { useAuthStore, usePermissionStore } from '@/store';
 import { RouteNames } from '@/utils/constants';
 
 import type { Ref } from 'vue';
-import type { BucketPermission, ObjectPermission } from '@/types';
+import type { BucketPermission, COMSObjectPermission } from '@/types';
 
 // Props
 type Props = {
@@ -43,10 +43,11 @@ onBeforeMount( async () => {
 
   if (!getUserId.value) await useAuthStore()._updateState();
 
-  const permBucketResponse = await permissionStore.fetchBucketPermissions({ userId: getUserId.value, objectPerms: true });
-  const permObjectResponse = await permissionStore.fetchObjectPermissions({ userId: getUserId.value, objectPerms: true });
+  const permBucketResponse = await permissionStore.fetchBucketPermissions({ userId: getUserId.value
+    , objectPerms: true });
+  const permObjectResponse = await permissionStore.fetchObjectPermissions({ userId: getUserId.value });
   if( !permBucketResponse.some( (x: BucketPermission) => x.bucketId === props.bucketId ) && 
-      !permObjectResponse.some( (x: ObjectPermission) => x.objectId == props.objectId )) {
+      !permObjectResponse.some( (x: COMSObjectPermission) => x.objectId == props.objectId )) {
     router.replace({ name: RouteNames.FORBIDDEN });
   }
   else {
@@ -58,9 +59,13 @@ onBeforeMount( async () => {
 <template>
   <div v-if="ready">
     <h1>
-      Audit Report
+      User Access Report
     </h1>
-    <BucketObjectList :bucket-id="props.bucketId" :object-id="props.objectId" :user-id="props.userId" />
+    <BucketObjectList 
+      :bucket-id="props.bucketId" 
+      :object-id="props.objectId" 
+      :user-id="props.userId" 
+    />
   </div>
 </template>
 
