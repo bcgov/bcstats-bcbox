@@ -66,10 +66,10 @@ export const useObjectStore = defineStore('object', () => {
     }
     catch (error: any) {
       if (error?.response?.status === 409) {
-        toast.error('Creating object', `File ${object.name} already exists`);
+        toast.error('Creating file', `File ${object.name} already exists`);
       }
       else {
-        toast.error('Creating object', error);
+        toast.error('Creating file', error);
       }
     }
     finally {
@@ -95,8 +95,8 @@ export const useObjectStore = defineStore('object', () => {
       );
     }
     catch (error: any) {
-      toast.error('Deleting object', error);
-      throw new Error('Error deleting object');
+      toast.error('Deleting file', error);
+      throw new Error('Error deleting file');
     }
     finally {
       fetchObjects({ bucketId: bucketId, userId: getUserId.value, bucketPerms: true });
@@ -116,7 +116,7 @@ export const useObjectStore = defineStore('object', () => {
       }
     }
     catch (error: any) {
-      toast.error('Downloading object', error);
+      toast.error('Downloading file', error);
     }
     finally {
       appStore.endIndeterminateLoading();
@@ -188,7 +188,7 @@ export const useObjectStore = defineStore('object', () => {
       }
     }
     catch (error: any) {
-      toast.error('Fetching objects', error);
+      toast.error('Fetching files', error);
     }
     finally {
       appStore.endIndeterminateLoading();
@@ -257,7 +257,7 @@ export const useObjectStore = defineStore('object', () => {
       await objectService.updateObject(objectId, object, headers, params, axiosOptions);
     }
     catch (error: any) {
-      toast.error('Updating object', error);
+      toast.error('Updating file', error);
     }
     finally {
       appStore.endIndeterminateLoading();
