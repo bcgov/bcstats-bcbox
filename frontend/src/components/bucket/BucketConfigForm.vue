@@ -53,9 +53,9 @@ const schema = object({
   accessKeyId: string().max(255).label('Access Key ID'),
   bucket: string().max(255).label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
-  endpoint: string().max(255).label('Endpoint'),
-  key: string().max(255).required().label('Bucket sub-path'),
-  secretAccessKey: string().max(255).label('Secret Access Key'),
+  endpoint: string().max(255).required().label('Endpoint'),
+  key: string().matches(/^[^\\]+$/, 'Sub-path must not contain backslashes').required().max(255).label('Key'),
+  secretAccessKey: string().max(255).required().label('Secret Access Key'),
   adminPass: string().max(255).required().label('Admin Password')
 });
 
@@ -74,7 +74,7 @@ const onSubmit = async (values: any) => {
     } as Bucket;
 
     // Only add key for new configurations
-    if( !props.bucket && values.key ) {
+    if( !props.bucket && values.key && joinPath(values.key)) {
       formBucket.key = joinPath(values.key);
     }
 
