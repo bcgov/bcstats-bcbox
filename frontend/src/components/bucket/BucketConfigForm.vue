@@ -39,23 +39,15 @@ const { getUserId } = storeToRefs(useAuthStore());
 
 // Default form values
 const initialValues: BucketForm = {
-  accessKeyId: props.bucket?.accessKeyId,
-  bucket: props.bucket?.bucket,
   bucketName: props.bucket?.bucketName,
-  endpoint: props.bucket?.endpoint,
   key: props.bucket?.key,
-  secretAccessKey: props.bucket?.secretAccessKey,
   adminPass: props.bucket?.adminPass
 };
 
 // Form validation schema
 const schema = object({
-  accessKeyId: string().max(255).label('Access Key ID'),
-  bucket: string().max(255).label('Bucket'),
   bucketName: string().max(255).required().label('Bucket name'),
-  endpoint: string().max(255).required().label('Endpoint'),
-  key: string().matches(/^[^\\]+$/, 'Sub-path must not contain backslashes').required().max(255).label('Key'),
-  secretAccessKey: string().max(255).required().label('Secret Access Key'),
+  key: string().matches(/^[^\\]+$/, 'Sub-path must not contain backslashes').required().max(255).label('Sub-path'),
   adminPass: string().max(255).required().label('Admin Password')
 });
 
@@ -65,11 +57,7 @@ const toast = useToast();
 const onSubmit = async (values: any) => {
   try {
     const formBucket = {
-      accessKeyId: values.accessKeyId,
-      bucket: values.bucket,
       bucketName: values.bucketName,
-      endpoint: values.endpoint,
-      secretAccessKey: values.secretAccessKey,
       adminPass: values.adminPass,
     } as Bucket;
 
