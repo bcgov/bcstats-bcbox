@@ -66,7 +66,7 @@ export const useObjectStore = defineStore('object', () => {
     }
     catch (error: any) {
       if (error?.response?.status === 409) {
-        toast.error('Creating object', 'File already exists');
+        toast.error('Creating object', `File ${object.name} already exists`);
       }
       else {
         toast.error('Creating object', error);
