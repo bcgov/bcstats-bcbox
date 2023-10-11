@@ -71,6 +71,7 @@ export const useObjectStore = defineStore('object', () => {
       else {
         toast.error('Creating file', error);
       }
+      throw new Error('Error Creating file');
     }
     finally {
       appStore.endIndeterminateLoading();

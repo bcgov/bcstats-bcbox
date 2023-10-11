@@ -63,7 +63,7 @@ const onUpload = async (event: any) => {
           );
           successfulFiles.value.push(file);
         } catch (error: any) {
-          toast.error(`Failed to upload file ${file.name}`, error);
+          //toast.error(`Failed to upload file ${file.name}`, error);
           failedFiles.value.push(file);
         }
         finally {
