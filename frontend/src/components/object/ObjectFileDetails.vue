@@ -15,7 +15,7 @@ import {
   ObjectVersion
 } from '@/components/object';
 import { ShareObjectButton } from '@/components/object/share';
-import { Button, Dialog, Divider, useToast } from '@/lib/primevue';
+import { Dialog, Divider, useToast } from '@/lib/primevue';
 import {
   useAuthStore,
   useMetadataStore,
@@ -63,11 +63,11 @@ const version: Ref<Version | undefined> = ref(undefined);
 const router = useRouter();
 const toast = useToast();
 
-const showPermissions = async (objectId: string) => {
+/*const showPermissions = async (objectId: string) => {
   permissionsVisible.value = true;
   permissionsObjectId.value = objectId;
   permissionsObjectName.value = obj.value?.name;
-};
+};*/
 
 async function onDeletedSuccess(versionId: string) {
   toast.success('File deleted');
@@ -183,7 +183,7 @@ watch( [props, getObjects], async () => {
             :ids="[props.objectId]"
             :version-id="props.versionId"
           />
-          <Button
+          <!--<Button
             v-if="permissionStore.isObjectActionAllowed(
               props.objectId, getUserId, Permissions.MANAGE, bucketId)"
             v-tooltip.bottom="'File Permissions'"
@@ -191,7 +191,7 @@ watch( [props, getObjects], async () => {
             @click="showPermissions(props.objectId)"
           >
             <font-awesome-icon icon="fa-solid fa-users" />
-          </Button>
+          </Button>-->
           <DeleteObjectButton
             v-if="permissionStore.isObjectActionAllowed(
               props.objectId, getUserId, Permissions.DELETE, bucketId)"

@@ -63,13 +63,13 @@ const showInfo = async (id: string) => {
   emit('show-object-info', id);
 };
 
-const showPermissions = async (objectId: string) => {
+/*const showPermissions = async (objectId: string) => {
   await permissionStore.fetchObjectPermissions({objectId});
 
   permissionsVisible.value = true;
   permissionsObjectId.value = objectId;
   permissionsObjectName.value = objectStore.findObjectById(objectId)?.name;
-};
+};*/
 
 /*const togglePublic = async (objectId: string, isPublic: boolean) => {
   await objectStore.togglePublic(objectId, isPublic);
@@ -234,7 +234,7 @@ const filters = ref({
             :mode="ButtonMode.ICON"
             :ids="[data.id]"
           />
-          <Button
+          <!--<Button
             v-if="permissionStore.isObjectActionAllowed(
               data.id, getUserId, Permissions.MANAGE, props.bucketId as string)"
             v-tooltip.bottom="'File Permissions'"
@@ -242,7 +242,7 @@ const filters = ref({
             @click="showPermissions(data.id)"
           >
             <font-awesome-icon icon="fa-solid fa-users" />
-          </Button>
+          </Button>-->
           <!--<SyncButton :object-id="data.id" />-->
           <Button
             v-if="data.public || permissionStore.isObjectActionAllowed(
