@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import BucketPermissionAddUser from '@/components/bucket/BucketPermissionAddUser.vue';
 import { useAlert } from '@/composables/useAlert';
-import { Button, Checkbox, Column, DataTable } from '@/lib/primevue';
+import { Button, Checkbox, Column, DataTable, useConfirm } from '@/lib/primevue';
 import { usePermissionStore } from '@/store';
 import { Permissions } from '@/utils/constants';
 
@@ -29,6 +29,17 @@ const showSearchUsers: Ref<boolean> = ref(false);
 // Actions
 const removeManageAlert = useAlert('Warning', 'Cannot remove last user with MANAGE permission.');
 
+const confirm = useConfirm();
+const confirmRemoveManage = (fullName: string, userId: string, permCode: string) => {
+  confirm.require({
+    message: `Please confirm that you want to remove Manage permission from ${fullName}.`,
+    header: 'Remove Manage Permission',
+    acceptLabel: 'Confirm',
+    rejectLabel: 'Cancel',
+    accept: () => permissionStore.deleteBucketPermission(props.bucketId, userId, permCode)
+  });
+};
+
 const cancelSearchUsers = () => {
   showSearchUsers.value = false;
 };
@@ -43,20 +54,25 @@ const removeBucketUser = (userId: string) => {
   }
 };
 
-const updateBucketPermission = (value: boolean, userId: string, permCode: string) => {
+const updateBucketPermission = (value: boolean, fullName: string, userId: string, permCode: string) => {
   if (value) {
     permissionStore.addBucketPermission(props.bucketId, userId, permCode);
   } else {
     const managers = getMappedBucketToUserPermissions.value.filter( (x: UserPermissions) => x.manage );
 
-    // Disallow removable of final MANAGE permission
-    if( permCode === Permissions.MANAGE && !managers.length ) {
-      removeManageAlert.show();
+    if( permCode === Permissions.MANAGE ) {
+      // Disallow removable of final MANAGE permission
+      if ( !managers.length ){
+        removeManageAlert.show();
 
-      // Set the value back as clicking will automatically change it
-      const perm: UserPermissions = getMappedBucketToUserPermissions.value
-        .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
-      perm.manage = true;
+        // Set the value back as clicking will automatically change it
+        const perm: UserPermissions = getMappedBucketToUserPermissions.value
+          .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
+        perm.manage = true;
+      // Give a warning when removing MANAGE permission
+      } else {
+        confirmRemoveManage(fullName, userId, permCode);
+      }     
     }
     else {
       permissionStore.deleteBucketPermission(props.bucketId, userId, permCode);
@@ -125,7 +141,7 @@ onBeforeMount( async () => {
             v-model="data.create"
             input-id="create"
             :binary="true"
-            @input="(value) => updateBucketPermission(value, data.userId, Permissions.CREATE)"
+            @input="(value) => updateBucketPermission(value, data.fullName, data.userId, Permissions.CREATE)"
           />
         </template>
       </Column>
@@ -139,7 +155,7 @@ onBeforeMount( async () => {
             v-model="data.read"
             input-id="read"
             :binary="true"
-            @input="(value) => updateBucketPermission(value, data.userId, Permissions.READ)"
+            @input="(value) => updateBucketPermission(value, data.fullName, data.userId, Permissions.READ)"
           />
         </template>
       </Column>
@@ -153,7 +169,7 @@ onBeforeMount( async () => {
             v-model="data.update"
             input-id="update"
             :binary="true"
-            @input="(value) => updateBucketPermission(value, data.userId, Permissions.UPDATE)"
+            @input="(value) => updateBucketPermission(value, data.fullName, data.userId, Permissions.UPDATE)"
           />
         </template>
       </Column>
@@ -167,7 +183,7 @@ onBeforeMount( async () => {
             v-model="data.delete"
             input-id="delete"
             :binary="true"
-            @input="(value) => updateBucketPermission(value, data.userId, Permissions.DELETE)"
+            @input="(value) => updateBucketPermission(value, data.fullName, data.userId, Permissions.DELETE)"
           />
         </template>
       </Column>
@@ -182,7 +198,7 @@ onBeforeMount( async () => {
             input-id="manage"
             :binary="true"
             :disabled="!data.elevatedRights"
-            @input="(value) => updateBucketPermission(value, data.userId, Permissions.MANAGE)"
+            @input="(value) => updateBucketPermission(value, data.fullName, data.userId, Permissions.MANAGE)"
           />
         </template>
       </Column>
