@@ -36,7 +36,13 @@ const confirmRemoveManage = (fullName: string, userId: string, permCode: string)
     header: 'Remove Manage Permission',
     acceptLabel: 'Confirm',
     rejectLabel: 'Cancel',
-    accept: () => permissionStore.deleteBucketPermission(props.bucketId, userId, permCode)
+    accept: () => permissionStore.deleteBucketPermission(props.bucketId, userId, permCode),
+    reject: () => {
+      // Set the value back as clicking will automatically change it
+      const perm: UserPermissions = getMappedBucketToUserPermissions.value
+        .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
+      perm.manage = true;
+    }
   });
 };
 
