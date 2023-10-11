@@ -36,13 +36,7 @@ const confirmRemoveManage = (fullName: string, userId: string, permCode: string)
     header: 'Remove Manage Permission',
     acceptLabel: 'Confirm',
     rejectLabel: 'Cancel',
-    accept: () => permissionStore.deleteBucketPermission(props.bucketId, userId, permCode),
-    reject: () => {
-      // Set the value back as clicking will automatically change it
-      const perm: UserPermissions = getMappedBucketToUserPermissions.value
-        .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
-      perm.manage = true;
-    }
+    accept: () => permissionStore.deleteBucketPermission(props.bucketId, userId, permCode)
   });
 };
 
@@ -70,15 +64,14 @@ const updateBucketPermission = (value: boolean, fullName: string, userId: string
       // Disallow removable of final MANAGE permission
       if ( !managers.length ){
         removeManageAlert.show();
-
-        // Set the value back as clicking will automatically change it
-        const perm: UserPermissions = getMappedBucketToUserPermissions.value
-          .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
-        perm.manage = true;
       // Give a warning when removing MANAGE permission
       } else {
         confirmRemoveManage(fullName, userId, permCode);
       }     
+      // Set the value back as clicking will automatically change it
+      const perm: UserPermissions = getMappedBucketToUserPermissions.value
+        .find( (x: UserPermissions) => x.userId === userId ) as UserPermissions;
+      perm.manage = true;
     }
     else {
       permissionStore.deleteBucketPermission(props.bucketId, userId, permCode);
