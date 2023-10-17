@@ -89,9 +89,9 @@ const onRemoveUploadedFile = async (index: number) => {
   successfulFiles.value.splice(index, 1);
 };
 
-/*const onRemoveFailedFile = async (index: number) => {
+const onRemoveFailedFile = async (index: number) => {
   failedFiles.value.splice(index, 1);
-};*/
+};
 
 // Based on files prop from upload component, are we in ready to upload mode
 const noFilesChosen = (files?: Array<File>): boolean => !files?.length;
@@ -159,11 +159,11 @@ const submitObjectMetaTagConfig = (values: Array<ObjectMetadataTagFormType>) => 
         :badge-props="{ value: 'Complete', severity: 'success' }"
         :remove-callback="onRemoveUploadedFile"
       />
-      <!--<ObjectUploadFile
+      <ObjectUploadFile
         :files="failedFiles"
         :badge-props="{ value: 'Failed', severity: 'danger' }"
         :remove-callback="onRemoveFailedFile"
-      />-->
+      />
     </template>
     <template #content="{ files, uploadedFiles, removeFileCallback, removeUploadedFileCallback }">
       <ObjectUploadFile
@@ -177,11 +177,6 @@ const submitObjectMetaTagConfig = (values: Array<ObjectMetadataTagFormType>) => 
       <ObjectUploadFile
         :files="uploadedFiles || successfulFiles"
         :badge-props="{ value: 'Complete', severity: 'success' }"
-        :remove-callback="removeUploadedFileCallback"
-      />
-      <ObjectUploadFile
-        :files="failedFiles"
-        :badge-props="{ value: 'Failed', severity: 'danger' }"
         :remove-callback="removeUploadedFileCallback"
       />
     </template>
